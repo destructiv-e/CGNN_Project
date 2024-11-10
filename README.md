@@ -22,7 +22,7 @@ cgnn_project/
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   ├── metrics.py
-│   │   └── visualization.py
+│   │   └── visualization.py - визуализация 
 │   └── main.py
 │
 ├── data/
