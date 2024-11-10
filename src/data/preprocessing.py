@@ -13,7 +13,7 @@ def create_adjacency_matrix(edge_index, num_nodes):
     adj_matrix = np.zeros((num_nodes, num_nodes))
     for edge in edge_index.T:
         adj_matrix[edge[0], edge[1]] = 1
-        adj_matrix[edge[1], edge[0]] = 1  # Если граф неориентированный
+        adj_matrix[edge[1], edge[0]] = 1
     return adj_matrix
 
 def normalize_adjacency_matrix(adj_matrix):
@@ -46,7 +46,7 @@ def regularize_normalized_adjacency_matrix(norm_adj_matrix, a):
     I = np.eye(num_nodes)
     return (a / 2) * (I + norm_adj_matrix)
 
-# Пример использования
+
 if __name__ == "__main__":
     edge_index = torch.tensor([[0, 1, 1, 2], [1, 0, 2, 1]], dtype=torch.long)
     x = torch.tensor([[1.0, 2.0], [2.0, 3.0], [3.0, 4.0]], dtype=torch.float)
@@ -56,11 +56,11 @@ if __name__ == "__main__":
     num_nodes = data.num_nodes
     adj_matrix = create_adjacency_matrix(data.edge_index, num_nodes)
 
-    # Нормализация матрицы смежности
+
     norm_adj_matrix = normalize_adjacency_matrix(adj_matrix)
 
-    # Регуляризация нормализованной матрицы смежности
-    a = 0.5  # Пример значения параметра регуляризации
+
+    a = 0.5
     reg_norm_adj_matrix = regularize_normalized_adjacency_matrix(norm_adj_matrix, a)
 
     node_features = data.x
