@@ -2,9 +2,10 @@ import torch
 from torch_geometric.data import Data
 import numpy as np
 
+
 def create_adjacency_matrix(edge_index, num_nodes):
     """
-    Создает матрицу смежности из списка ребер.
+    Создает матрицу смежности из списка ребер для неориентированного графа.
 
     :param edge_index: Список ребер в формате (2, num_edges), где каждый элемент - индекс узла.
     :param num_nodes: Количество узлов в графе.
@@ -12,9 +13,12 @@ def create_adjacency_matrix(edge_index, num_nodes):
     """
     adj_matrix = np.zeros((num_nodes, num_nodes))
     for edge in edge_index.T:
+        if edge[0] >= num_nodes or edge[1] >= num_nodes:
+            raise ValueError(f"Edge {edge} contains node index out of range (num_nodes={num_nodes})")
         adj_matrix[edge[0], edge[1]] = 1
         adj_matrix[edge[1], edge[0]] = 1  # Если граф неориентированный
     return adj_matrix
+
 
 def normalize_adjacency_matrix(adj_matrix):
     """
@@ -34,6 +38,7 @@ def normalize_adjacency_matrix(adj_matrix):
 
     return degree_inv_sqrt @ adj_matrix_with_self_loops @ degree_inv_sqrt
 
+
 def regularize_normalized_adjacency_matrix(norm_adj_matrix, a):
     """
     Регуляризует нормализованную матрицу смежности.
@@ -46,15 +51,21 @@ def regularize_normalized_adjacency_matrix(norm_adj_matrix, a):
     I = np.eye(num_nodes)
     return (a / 2) * (I + norm_adj_matrix)
 
+
 # Пример использования
 if __name__ == "__main__":
-    edge_index = torch.tensor([[0, 1, 1, 2], [1, 0, 2, 1]], dtype=torch.long)
+    edge_index = torch.tensor([[0, 1, 2],
+                               [1, 2, 0]], dtype=torch.long)
     x = torch.tensor([[1.0, 2.0], [2.0, 3.0], [3.0, 4.0]], dtype=torch.float)
     y = torch.tensor([0, 1, 0], dtype=torch.long)
     data = Data(x=x, edge_index=edge_index, y=y)
 
     num_nodes = data.num_nodes
-    adj_matrix = create_adjacency_matrix(data.edge_index, num_nodes)
+    try:
+        adj_matrix = create_adjacency_matrix(data.edge_index, num_nodes)
+    except ValueError as e:
+        print(f"Error: {e}")
+        exit(1)
 
     # Нормализация матрицы смежности
     norm_adj_matrix = normalize_adjacency_matrix(adj_matrix)

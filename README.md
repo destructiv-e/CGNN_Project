@@ -18,7 +18,7 @@ cgnn_project/
 │   ├── data/
 │   │   ├── __init__.py
 │   │   ├── dataset.py
-│   │   └── preprocessing.py
+│   │   └── preprocessing.py - предварительная обработка данных
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   ├── metrics.py
