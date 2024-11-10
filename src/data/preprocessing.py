@@ -16,7 +16,7 @@ def create_adjacency_matrix(edge_index, num_nodes):
         if edge[0] >= num_nodes or edge[1] >= num_nodes:
             raise ValueError(f"Edge {edge} contains node index out of range (num_nodes={num_nodes})")
         adj_matrix[edge[0], edge[1]] = 1
-        adj_matrix[edge[1], edge[0]] = 1  # Если граф неориентированный
+        adj_matrix[edge[1], edge[0]] = 1
     return adj_matrix
 
 
@@ -52,7 +52,8 @@ def regularize_normalized_adjacency_matrix(norm_adj_matrix, a):
     return (a / 2) * (I + norm_adj_matrix)
 
 
-# Пример использования
+
+
 if __name__ == "__main__":
     edge_index = torch.tensor([[0, 1, 2],
                                [1, 2, 0]], dtype=torch.long)
@@ -67,11 +68,11 @@ if __name__ == "__main__":
         print(f"Error: {e}")
         exit(1)
 
-    # Нормализация матрицы смежности
+
     norm_adj_matrix = normalize_adjacency_matrix(adj_matrix)
 
-    # Регуляризация нормализованной матрицы смежности
-    a = 0.5  # Пример значения параметра регуляризации
+
+    a = 0.5
     reg_norm_adj_matrix = regularize_normalized_adjacency_matrix(norm_adj_matrix, a)
 
     node_features = data.x
