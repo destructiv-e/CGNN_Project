@@ -2,7 +2,7 @@
 
 ## Описание
 
-Этот проект реализует модель Continuous Graph Neural Network (CGNN), описанную в статье [Continuous Graph Neural Network](https://arxiv.org/abs/2003.04407) авторов Louis-Pascal A. C. Xhonneux, Meng Qu и Jian Tang. CGNN использует непрерывные дифференциальные уравнения для моделирования динамики графов, что позволяет более гибко управлять процессом обучения и может привести к более стабильным и точным моделям.
+Этот проект реализует модель Continuous Graph Neural Network (CGNN), описанную в статье [Continuous Graph Neural Network](https://proceedings.mlr.press/v119/xhonneux20a/xhonneux20a-supp.pdf) авторов Louis-Pascal A. C. Xhonneux, Meng Qu и Jian Tang. CGNN использует непрерывные дифференциальные уравнения для моделирования динамики графов, что позволяет более гибко управлять процессом обучения и может привести к более стабильным и точным моделям.
 
 ## Структура проекта
 
