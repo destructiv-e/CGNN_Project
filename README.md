@@ -13,7 +13,7 @@ cgnn_project/
 │   ├── __init__.py
 │   ├── models/
 │   │   ├── __init__.py
-│   │   ├── cgnn.py
+│   │   ├── cgnn.py - модель
 │   │   └── ode_solver.py
 │   ├── data/
 │   │   ├── __init__.py
