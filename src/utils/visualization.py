@@ -9,12 +9,10 @@ def visualize_graph(adj_matrix, title="Graph"):
     :param adj_matrix: Матрица смежности в формате numpy.ndarray.
     :param title: Заголовок графика.
     """
-    # Создаем граф из матрицы смежности
     G = nx.from_numpy_array(adj_matrix)
 
-    # Визуализируем граф
     plt.figure(figsize=(8, 6))
-    pos = nx.spring_layout(G)  # Расположение узлов
+    pos = nx.spring_layout(G)
     nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=500, font_size=12, font_weight='bold', edge_color='gray')
     plt.title(title)
     plt.show()

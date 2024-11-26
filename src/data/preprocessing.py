@@ -52,8 +52,6 @@ def regularize_normalized_adjacency_matrix(norm_adj_matrix, a):
     return (a / 2) * (I + norm_adj_matrix)
 
 
-
-
 if __name__ == "__main__":
     edge_index = torch.tensor([[0, 1, 2],
                                [1, 2, 0]], dtype=torch.long)
@@ -68,9 +66,7 @@ if __name__ == "__main__":
         print(f"Error: {e}")
         exit(1)
 
-
     norm_adj_matrix = normalize_adjacency_matrix(adj_matrix)
-
 
     a = 0.5
     reg_norm_adj_matrix = regularize_normalized_adjacency_matrix(norm_adj_matrix, a)
